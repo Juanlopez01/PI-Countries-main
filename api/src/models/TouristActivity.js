@@ -6,8 +6,9 @@ module.exports = (sequelize) => {
     sequelize.define('touristActivity', {
         id: {
             type: DataTypes.INTEGER,
-            PrimaryKey: true,
-            allowNull: false
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
         },
         name:{
             type: DataTypes.STRING,
@@ -34,5 +35,7 @@ module.exports = (sequelize) => {
             ),
             allowNull: false
         }
+    },{
+        timestamps: false
     })
 }

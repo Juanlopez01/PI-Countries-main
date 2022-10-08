@@ -6,24 +6,40 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     id:{
       type: DataTypes.STRING(3),
-      PrimaryKey: true,
+      primaryKey: true,
       allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        args: true,
+        msg: 'Faltan datos'
+      }
     },
     image: {
-      type: DataTypes.BLOB('long'),
+      type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        args: true,
+        msg: 'Faltan datos'
+      }
     },
     continent:{
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        args: true,
+        msg: 'Faltan datos'
+      }
     },
     capital: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        args: true,
+        msg: 'Faltan datos'
+      }
     },
     sub_region:{
       type: DataTypes.STRING,
