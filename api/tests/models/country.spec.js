@@ -1,4 +1,4 @@
-const { Country, conn } = require('../../src/db.js');
+const { Country, conn, TouristActivity } = require('../../src/db.js');
 const { expect } = require('chai');
 
 describe('Country model', () => {
@@ -20,3 +20,31 @@ describe('Country model', () => {
     });
   });
 });
+
+describe('TouristActivity model', () => {
+  before(() => conn.authenticate()
+  .catch((error) => {
+    console.error(error.message)
+  }));
+  describe('Validators', () => {
+    beforeEach(() => TouristActivity.sync({force: true}));
+    describe('name', () => {
+      it('should throw an error if some data is missed', (done) => {
+        TouristActivity.create({})
+        .then(() => done(new Error('Required Data')))
+        .catch(() => done())
+      });
+      it('should work when the data is valid', () => {
+        TouristActivity.create({
+          name: 'Ski',
+          difficulty: 3,
+          duration: '60',
+          season: ['summer'],
+          image: 'https://www.nevasport.com/fotos/240422/950476_tn379x252y.jpg',
+          codeCountry: 'ARG'
+        })
+      })
+    })
+  })
+
+})

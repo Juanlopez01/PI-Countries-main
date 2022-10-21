@@ -1,0 +1,29 @@
+.home{
+    background-color: #bbe4e9;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.home__main{
+    width: 98%;
+    height: 85%;
+    align-self: flex-end;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    display: grid;
+    grid-template-areas: "filter list list list"
+                         "filter list list list"
+                         "filter list list list"
+                         "filter list list list";
+    grid-template-columns: 20em;
+    grid-template-rows: 1em;
+}
+.home__main__filter{
+    grid-area: filter;
+    
+}
+.home__main__listCountries{
+    grid-area: list;
+}

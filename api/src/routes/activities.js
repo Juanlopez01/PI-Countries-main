@@ -1,16 +1,23 @@
 const { Router } = require('express');
 const {Op} = require('sequelize')
-const { TouristActivity } = require('../db');
-const { Country } = require('../db');
-const { addActivity } = require('./controllers/controllers')
+const { addActivity, getAllActivities} = require('./controllers/controllers')
 const router = Router();
 
 router.post('/', async (req, res) => {
     try {
-        const {name, difficulty, duration, season, codeCountry} = req.body
-        if(!name || !difficulty || !duration || !season || !codeCountry) throw new Error('Faltan Datos');
-        const newActivity = await addActivity(name, difficulty, duration, season, codeCountry);
+        const {name, difficulty, duration, season, image, codeCountry} = req.body
+        const newActivity = await addActivity(name, difficulty, duration, season, image, codeCountry);
         return res.status(200).json(newActivity)
+    } catch (error) {
+        return res.status(400).json(error.message)
+    }
+})
+
+router.get('/', async (req, res) => {
+    try {
+        const listOfActivities = await getAllActivities()
+        if(!listOfActivities.length) throw new Error('Does not exist activities')
+        return res.status(200).json(listOfActivities)
     } catch (error) {
         return res.status(400).json(error.message)
     }

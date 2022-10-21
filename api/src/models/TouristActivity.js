@@ -4,11 +4,10 @@ const {DataTypes} = require('sequelize')
 module.exports = (sequelize) => {
 
     sequelize.define('touristActivity', {
-        id: {
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false,
-            autoIncrement: true
+            autoIncrement: true,
         },
         name:{
             type: DataTypes.STRING,
@@ -16,15 +15,13 @@ module.exports = (sequelize) => {
         },
         difficulty: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             validate:{
                 min:1,
                 max:5
             }
         },
         duration:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataTypes.STRING(4),
         },
         season:{
             type: DataTypes.ENUM(
@@ -34,6 +31,10 @@ module.exports = (sequelize) => {
                 'winter'
             ),
             allowNull: false
+        },
+        image:{
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },{
         timestamps: false

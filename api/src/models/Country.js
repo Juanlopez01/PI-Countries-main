@@ -13,32 +13,28 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        args: true,
-        msg: 'Faltan datos'
+        is: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i
       }
     },
     image: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        args: true,
-        msg: 'Faltan datos'
+        isUrl: true
       }
     },
     continent:{
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Africa', 'Asia', 'Europe', 'Oceania', 'North America', 'South America', 'Antarctica'),
       allowNull: false,
       validate: {
-        args: true,
-        msg: 'Faltan datos'
+        is: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i
       }
     },
     capital: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        args: true,
-        msg: 'Faltan datos'
+        is: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/i
       }
     },
     sub_region:{
@@ -54,3 +50,4 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 };
+// ENUM('Africa', 'Americas', 'Asia', 'Europe', 'Oceania')

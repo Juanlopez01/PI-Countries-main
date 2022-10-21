@@ -1,0 +1,158 @@
+.filter__container{
+    background-color:  #5585b5;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.filter__search{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.filter__input{
+    background-color: #a4c7cc;
+    width: 70%;
+    border-radius: 15px;
+    border-color: transparent;
+    padding: 0.5em 0.5em;
+    text-decoration-color: #5585b5;
+    font-size: 15px;
+}
+.filter__input__error{
+  background-color: #cca4a4;
+    width: 70%;
+    border-radius: 15px;
+    border-color: transparent;
+    padding: 0.5em 0.5em;
+    text-decoration-color: #b55555;
+    font-size: 15px;
+}
+.filter__input__error:focus{
+  outline: none;
+}
+.filter__input:focus{
+    background-color: #bbe4e9;
+    outline: none;
+}
+
+.filter__continents h3{
+    padding-bottom: 10px;
+}
+
+.filter__buttons{
+    min-width: 120px;
+    height: 28px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-color: #53a8b6;
+    box-shadow: 0 3px 1px -2px #466e96, 0 2px 2px 0 #466e96, 0 1px 5px 0 #466e96;
+  }
+  .filter__buttons:active {
+    box-shadow: 0 4px 2px -3px #466e96, 0 4px 5px 1px #466e96, 0 2px 7px 1px #466e96;
+  }
+
+  .filter__continents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .continents__filter{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+  }
+
+  .filter__seasons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+  }
+
+  .filter__seasons__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+  .filter__seasons__container h3{
+    padding: 10px;
+  }
+
+  .filter__order__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0;
+  }
+
+  .filter__order__container h3{
+    padding-bottom: 10px;
+  }
+
+  .filter__order{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 0.7fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+  }
+  .activities__buttom{
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: flex-start;
+        min-width: 110px;
+        height: 30px;
+        color: #fff;
+        padding: 8px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        overflow: hidden;
+        border-radius: 5px;
+        border: none;
+        background-color: #53a8b6;
+        box-shadow: 0 3px 1px -2px #466e96, 0 2px 2px 0 #466e96, 0 1px 5px 0 #466e96;
+      }
+      .activities__buttom:hover {
+        border-radius: 5px;
+        padding-right: 24px;
+        padding-left:8px;
+      }
+      .activities__buttom:hover:after {
+        opacity: 1;
+        right: 10px;
+      }
+      .activities__buttom:after {
+        content: "\00BB";
+        position: absolute;
+        opacity: 0;
+        font-size: 20px;
+        line-height: 40px;
+        top: 0;
+        right: -20px;
+        transition: 0.4s;
+      }
+  

@@ -1,0 +1,42 @@
+.nav__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #53a8b6;
+    width: 98%;
+    height: 3em;
+    border-radius: 0.5em;
+    position: fixed;
+    margin: 1em;
+}
+.nav__header h1{
+    padding: 0.3em;
+    font-weight: bold;
+}
+
+.nav__header__links{
+    display: flex;
+    padding-right: 1em;
+}
+
+.nav__header__links__link{
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em 1.2em;
+
+} 
+.nav__header__links__link:active{
+    background: rgba(255,255,255,0.35);
+    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8.4px);
+    -webkit-backdrop-filter: blur(8.4px);
+    border-radius: 10px;
+    color: #5585b5
+  }
+  .nav__header__links__link:hover{
+    background: rgba(255,255,255,0.15);
+    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8.4px);
+    -webkit-backdrop-filter: blur(8.4px);
+    border-radius: 10px;
+  }
