@@ -44,6 +44,7 @@ const searchCountryByName = async (name) => {
 }
 
 const addActivity = async (name, difficulty, duration, season, image, codeCountry) => {
+    
 let newActivities = []
     for(code of codeCountry){
         for(seas of season){

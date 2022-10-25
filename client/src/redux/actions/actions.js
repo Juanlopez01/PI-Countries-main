@@ -8,6 +8,7 @@ export const COUNTRY_DETAIL = 'COUNTRY_DETAIL';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const FILTERED_ACTIVITIES = 'FILTERED_ACTIVITIES';
+export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY';
 
 
 export function pageCountries ({continent, season, order, name}){
@@ -74,14 +75,39 @@ export function addActivity ({name, difficulty, duration, season,image, codeCoun
         })
         .then(response => {
             if(response.data[0][1]){
-                alert('Actividad creada correctamente')
+                alert('Activity created successfully')
                 return dispatch({
                 type: ADD_ACTIVITY,
                 payload: [response.data[0][0], codeCountry]
                 })
             } else { 
-                alert('Ya existe la actividad')
+                alert('Activity already exists')
             }
-})
+        })
+    }
+}
+
+export function updateActivity(input, id){
+    return async function(){
+        await axios.put(`http://localhost:3001/activities/${id}`,input)
+        .then(response =>{ 
+            if(response.data[0]){
+                alert('Activity modified successfully')
+            } else {
+                alert('The activity could not be modified correctly')
+            }
+        })
+    }
+}
+export function deleteActivity(id){
+    return async function(){
+        await axios.delete(`http://localhost:3001/activities/${id}`)
+        .then(response =>{ 
+            if(response.data){
+                alert('Activity deleted successfully')
+            } else {
+                alert('The activity could not be deleted correctly')
+            }
+        })
     }
 }

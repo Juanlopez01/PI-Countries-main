@@ -1,0 +1,24 @@
+.background{
+    background: #bbe4e9;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background h1{
+    font-size: 3.5em;
+}
+
+.background h3{
+    font-size: 1.5em;
+}
+.social__container{
+    padding: 2em;
+}
+.social__container img{
+    padding: 15px;
+    width: 50px;
+}

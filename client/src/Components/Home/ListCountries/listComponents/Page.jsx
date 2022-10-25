@@ -6,8 +6,8 @@ import Loader from '../../../Loader'
 const Page = ({countries}) => {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
-    
     let numPages = countries.length
+    
     useEffect(()=>{
         setLoading(true)
         setTimeout(()=>{
@@ -46,8 +46,8 @@ const Page = ({countries}) => {
                     <button name={(page - 1).toString()} onClick={()=> setPage(page - 1)}>{page - 1}</button>
                     <button name={page.toString()} onClick={()=> setPage(page)}>{page}</button>
                     <button name={(page + 1).toString()} onClick={()=> setPage(page + 1)}>{page + 1}</button>
-                    <button>...</button>
-                    <button name={numPages.toString()} onClick={()=> setPage(numPages)}>{numPages}</button>
+                    {page < numPages - 1 && <><button>...</button>
+                    <button name={numPages.toString()} onClick={()=> setPage(numPages)}>{numPages}</button></>}
                     </>)
             }
         } else if(numPages === 2){

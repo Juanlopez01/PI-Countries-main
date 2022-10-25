@@ -17,7 +17,7 @@ function CreateActivity() {
         name: '',
         duration: '',
         season: [],
-        image:'',
+        image:'image does not exist',
         codeCountry: []
     })
     let search = {
@@ -39,9 +39,11 @@ function CreateActivity() {
             case 'duration':
                 if(event.target.value <= 1440){
                     setError({...error, duration: false})
-                    setInput({...input, duration: event.target.value})} else {
+                    setInput({...input, duration: event.target.value})
+                } else {
                         setError({...error, duration: true})
-                        setInput({...input, duration: event.target.value})}                
+                        setInput({...input, duration: event.target.value})
+                    }                
                 break;
             case 'image':
                 setInput({...input, image: URL.createObjectURL(event.target.files[0])
@@ -70,7 +72,7 @@ function CreateActivity() {
                     name: '',
                     duration: '',
                     season: [],
-                    image:'',
+                    image:'image does not exist',
                     codeCountry: []
                 })
         }       
@@ -142,7 +144,7 @@ function CreateActivity() {
         </form>
         <div className={style.preview__card}>
             <h1>Preview</h1>
-            <img src={input.image} alt={input.name} className={style.image__preview}/>
+            {input.image !== 'image does not exist' && <img src={input.image} alt={input.name} className={style.image__preview}/>}
             <h3>{input.name}</h3>
             <p>Duration: {input.duration} min</p>
             <label>Season:</label>

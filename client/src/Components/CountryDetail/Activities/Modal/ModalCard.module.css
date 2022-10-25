@@ -1,0 +1,48 @@
+.background__container{
+    position: fixed;
+    z-index: 999;
+    top:0;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.75);
+}
+
+.modal__close{
+    display: none;
+}
+.card__container{
+    background-color: #5585b5 ;
+    padding: 25px;
+    border-radius: 10px;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+}
+
+.card__container .close__button{
+  margin: 8px;
+  width: 25px;
+  height: 25px;
+  color: black;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background-color: #53a8b6;
+  box-shadow: 0 3px 1px -2px #3e6082, 0 2px 2px 0 #3e6082, 0 1px 5px 0 #3e6082;
+}
+.card__container .close__button:active {
+    box-shadow: 0 4px 2px -3px #3e6082, 0 4px 5px 1px #3e6082, 0 2px 7px 1px #3e6082;
+}

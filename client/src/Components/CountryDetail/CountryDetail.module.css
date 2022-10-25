@@ -83,6 +83,7 @@
     margin: 0 13px 5px 0 ;
     background-color: #53a8b6;
     border-radius: 10px 10px 10px 0;
+    overflow: auto;
 }
 
 .loader{

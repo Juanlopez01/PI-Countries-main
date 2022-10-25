@@ -12,7 +12,12 @@
     text-shadow: 3px 2px 6px rgba(0,0,0,0.27);
     font-size: 20px;
 }
-
+.modify__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .rating{
     color: yellow;
     letter-spacing: 6px;
@@ -22,4 +27,147 @@
     max-width: 200px;
     padding: 5px;
     border-radius: 10px;
+}
+.star__rating{
+  align-self: center;
+  justify-self: center;
+}
+.star__rating button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 30px;
+    font-size: 1.6em;
+  }
+  .on {
+    color: yellow;
+  }
+  .off {
+    color: #ccc;
+  }
+  .input__container{
+    align-self: center;
+    justify-self: center;
+    margin: 15px;
+    width: 80%;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .input__container input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    color: #fff;
+    padding-top: 5px;
+    border: none;
+    outline: none;
+  }
+  .input__container .form__label{
+    font-size: 1.1em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid #bbe4e9;
+  }
+.input__container .form__label:after{
+  content: "";
+  position: absolute;
+  Left: 0;
+  bottom: -1px;
+  width: 100%; 
+  height: 100%;
+  border-bottom: 3px solid #2ecece;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+  
+.text__label{
+  position: absolute;
+  bottom: 3px;
+  left:0;
+  transition: all 0.3s ease;
+  color: #bbe4e9;
+}
+.input__container__error .text__label{
+  position: absolute;
+  bottom: 3px;
+  left:0;
+  transition: all 0.3s ease;
+  color: #854040;
+}
+  
+.input__container input:focus + .form__label .text__label, .input__container input:valid + .form__label .text__label{
+  transform: translateY(-150%);
+  font-size: 0.6em;
+  color:#bbe4e9;
+}
+.input__container__error{
+  margin: 15px;
+  width: 80%;
+  height: 35px;
+  position: relative;
+  overflow: hidden;
+}
+  
+.input__container__error input {
+  height: 100%;
+  width: 100%;
+  background: rgb(253, 212, 212);
+  color: rgb(150, 0, 0);
+  padding-top: 5px;
+  border: none;
+  outline: none;
+}
+.input__container__error .form__label{
+  font-size: 1.1em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #f37f7f;
+}
+.input__container__error .form__label:after{
+  content: "";
+  position: absolute;
+  Left: 0;
+  bottom: -1px;
+  width: 100%; 
+  height: 100%;
+  border-bottom: 3px solid #ce2e2e;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+  
+.input__container__error input:focus + .form__label .text__label, .input__container_error input:invalid + .form__label .text__label{
+  transform: translateY(-150%);
+  font-size: 0.6em;
+  color:#8d0000;
+}
+.action__buttons{
+  margin: 8px;
+  width: 80px;
+  height: 25px;
+  color: black;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background-color: #53a8b6;
+  box-shadow: 0 3px 1px -2px #3e6082, 0 2px 2px 0 #3e6082, 0 1px 5px 0 #3e6082;
+}
+.action__buttonsn:active {
+  box-shadow: 0 4px 2px -3px #3e6082, 0 4px 5px 1px #3e6082, 0 2px 7px 1px #3e6082;
 }

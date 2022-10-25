@@ -80,7 +80,8 @@ export default function Filter(){
                 </div>
             </div>
 
-            <select name='activities' onChange={(e) => inputHandler(e)}>
+            <h3>Choose an activity:</h3>
+            <select name='activities' className={style.form__inputs} onChange={(e) => inputHandler(e)}>
                 <option key='' value=''></option>
                 {nameActivities.length > 0 && nameActivities.map( act => {
                     if(Array.isArray(act)){

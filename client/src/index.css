@@ -7,3 +7,18 @@ code {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+*::-webkit-scrollbar{
+  width: 15px;
+  height: 15px;
+}
+*::-webkit-scrollbar-track{
+  background: #bbe4e9;
+}
+*::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background: #79c2d0;
+}
+
+*::-webkit-scrollbar-thumb:hover{
+  background:#83d2e2 ;
+}

@@ -7,6 +7,7 @@ import CountryDetail from './Components/CountryDetail/CountryDetail';
 import {Route} from 'react-router-dom';
 import React from 'react';
 import style from './App.css'
+import { About } from './Components/About/About';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         />
         <Route
         path='/activities'
+        render = {() => <Nav />}
+        />
+        <Route
+        path='/about'
         render = {() => <Nav />}
         />
         <Route
@@ -50,6 +55,11 @@ function App() {
         render={() => <CreateActivity />}
         />
 
+        <Route
+        exact
+        path='/about'
+        component={() => <About />}
+        />
       </div>
 
     </div>
