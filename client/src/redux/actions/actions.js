@@ -12,17 +12,17 @@ export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY';
 
 
 export function pageCountries ({continent, season, order, name}){
-    let queryUrl = 'http://localhost:3001/countries?'
+    let queryUrl = 'http://143.198.116.7:3001/countries?'
     if(name) queryUrl = queryUrl + `name=${name}&`;
     if(continent) queryUrl = queryUrl + `continent=${continent}&`;
     if(season) queryUrl = queryUrl + `touristSeason=${season}&`;
     if(order) queryUrl = queryUrl + `order=${order}`;
     return async function(dispatch){
-        await axios.get(queryUrl)
-        .then(response => dispatch({
+       const res = await axios.get(queryUrl);
+         return dispatch({
             type: LIST_COUNTRIES,
-            payload: response.data
-        }))
+            payload: res.data
+        })
     }
 }
 
@@ -45,51 +45,54 @@ export function activitiesFilter(countries, activity){
 }
 
 export function getCountryDetail (id){
-    return async function(dispatch){
-        await axios.get(`http://localhost:3001/countries/${id}`)
+    return function(dispatch){
+        return axios.get(`http://143.198.116.7:3001/countries/${id}`)
         .then(response => dispatch({
             type: COUNTRY_DETAIL,
             payload: response.data
         }))
     }
 }
+//PROMISES
 export function getActivities () {
-    return async function (dispatch){
-        await axios.get('http://localhost:3001/activities')
+    return function (dispatch){
+        return axios.get('http://143.198.116.7:3001/activities')
         .then(response => dispatch({
             type:GET_ACTIVITIES,
             payload: response.data
         }))
     }
 }
-export function addActivity ({name, difficulty, duration, season,image, codeCountry}){
+
+//ASYNC AWAIT
+export function addActivity ({name, difficulty, duration, season,image,review, codeCountry}){
 
     return async function(dispatch){
-        await axios.post('http://localhost:3001/activities', {
+       const res = await axios.post('http://143.198.116.7:3001/activities', {
             name,
             difficulty: parseInt(difficulty),
             duration: duration,
             season,
             image,
+            review,
             codeCountry,
-        })
-        .then(response => {
-            if(response.data[0][1]){
+        });
+            if(res.data[0][1]){
                 alert('Activity created successfully')
                 return dispatch({
                 type: ADD_ACTIVITY,
-                payload: [response.data[0][0], codeCountry]
+                payload: [res.data[0][0], codeCountry]
                 })
             } else { 
                 alert('Activity already exists')
             }
-        })
+        
     }
 }
 
 export function updateActivity(input, id){
-    return async function(){
-        await axios.put(`http://localhost:3001/activities/${id}`,input)
+    return function(){
+        return axios.put(`http://143.198.116.7:3001/activities/${id}`,input)
         .then(response =>{ 
             if(response.data[0]){
                 alert('Activity modified successfully')
@@ -101,13 +104,12 @@ export function updateActivity(input, id){
 }
 export function deleteActivity(id){
     return async function(){
-        await axios.delete(`http://localhost:3001/activities/${id}`)
-        .then(response =>{ 
-            if(response.data){
-                alert('Activity deleted successfully')
-            } else {
-                alert('The activity could not be deleted correctly')
+        const res = await axios.delete(`http://143.198.116.7:3001/activities/${id}`)
+        
+        if(res.data){
+            alert('Activity deleted successfully')
+        } else {
+            alert('The activity could not be deleted correctly')
             }
-        })
     }
 }

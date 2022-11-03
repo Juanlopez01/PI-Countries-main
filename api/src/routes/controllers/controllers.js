@@ -33,23 +33,13 @@ const allApiToDB = async () => {
     return allData
 }
 
-const searchCountryByName = async (name) => {
-    let countryName = nameTransform(name)
-    
-
-    //Busco todos los paises en el que el nombre coincida con lo recibido por query. (iLike matchea todo lo que contenga countryName y es insensitive)
-    const _country = await Country.findAll({where: {name: { [Op.iLike]: `%${countryName}%` }}})
-    if(!_country.length) throw new Error('Country not found')
-    return _country
-}
-
-const addActivity = async (name, difficulty, duration, season, image, codeCountry) => {
+const addActivity = async (name, difficulty, duration, season, image,review, codeCountry) => {
     
 let newActivities = []
     for(code of codeCountry){
         for(seas of season){
             let [row, create] = await TouristActivity.findOrCreate({
-                where: {name, difficulty, duration, season:seas, image}})
+                where: {name, difficulty, duration, season:seas, image, review}})
            await row.addCountry(code)
            newActivities.push([row, create])
         }
@@ -61,6 +51,14 @@ const getAllActivities = async () => {
     const listActivities = await TouristActivity.findAll({ include: Country})
     return listActivities
 }
+const searchCountryByName = async (name) => {
+    let countryName = nameTransform(name)
+    //Busco todos los paises en el que el nombre coincida con lo recibido por query. (iLike matchea todo lo que contenga countryName y es insensitive)
+    const _country = await Country.findAll({where: {name: { [Op.iLike]: `%${countryName}%` }}})
+    if(!_country.length) throw new Error('Country not found')
+    return _country
+}
+
 
 const countriesOrder = async (order, touristSeason, continent, countryName) => {
     let orderCountries

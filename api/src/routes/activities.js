@@ -6,8 +6,8 @@ const {TouristActivity} = require('../db')
 
 router.post('/', async (req, res) => {
     try {
-        const {name, difficulty, duration, season, image, codeCountry} = req.body
-        const newActivity = await addActivity(name, difficulty, duration, season, image, codeCountry);
+        const {name, difficulty, duration, season, image, review,codeCountry} = req.body
+        const newActivity = await addActivity(name, difficulty, duration, season, image, review,codeCountry);
         return res.status(200).json(newActivity)
     } catch (error) {
         return res.status(400).json(error.message)

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import style from './Page.module.css'
 import {Link} from 'react-router-dom'
-import Loader from '../../../Loader'
 
 const Page = ({countries}) => {
     const [loading, setLoading] = useState(true)
@@ -62,7 +61,6 @@ const Page = ({countries}) => {
                 <button name={page.toString()} onClick={()=> setPage(page) }>{page}</button>
                 </>)
         }
-            
     }
 
 
@@ -90,9 +88,9 @@ const Page = ({countries}) => {
         </div>
         <div className={style.page__nav}>
         <button name='1' onClick={()=> setPage(1)}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916756.svg?token=exp=1665675106~hmac=3adb666a5dc22c490e7fe214278435b0' /></button>
-        <button name={page > 1 ? (page - 1).toString() : '1'} onClick={()=> {if(page != 1){setPage(page - 1)}else{setPage(1)}}}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916934.svg?token=exp=1665674781~hmac=b0bebc74ca3b0906226fdde279e1cd75' /></button>
+        <button name={page > 1 ? (page - 1).toString() : '1'} onClick={()=> {page !== 1 ? setPage(page - 1):setPage(1)}}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916934.svg?token=exp=1665674781~hmac=b0bebc74ca3b0906226fdde279e1cd75' /></button>
         {buttonFunction()}
-        <button name={page < numPages? (page + 1).toString(): numPages.toString()} onClick={()=> {if(page != numPages){setPage(page + 1)}else{setPage(numPages)}}}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916924.svg?token=exp=1665674791~hmac=1ea94dec3933f686fec639888afa56a1' /></button>
+        <button name={page < numPages? (page + 1).toString(): numPages.toString()} onClick={()=> {page !== numPages ? setPage(page + 1) : setPage(numPages)}}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916924.svg?token=exp=1665674791~hmac=1ea94dec3933f686fec639888afa56a1' /></button>
         <button name={numPages.toString()} onClick={()=> setPage(numPages)}><img src='https://www.flaticon.es/svg/vstatic/svg/3916/3916765.svg?token=exp=1665675165~hmac=46f94689d2284c2e21a559d3ecdc948f' /></button>
         </div>
         

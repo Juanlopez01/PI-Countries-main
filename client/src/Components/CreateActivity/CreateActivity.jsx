@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { pageCountries, addActivity } from '../../redux/actions/actions';
 import style from './CreateActivity.module.css';
+import {arrayNonRepeat} from './controllers'
 
 function CreateActivity() {
     const dispatch = useDispatch()
     const country = useSelector(state => state.countriesLoaded)
     const [error, setError] = useState({
-        name: false,
-        duration:false,
+        name: true,
+        duration:true,
+        image: true
     })
     const [difficulty, setDifficulty] = useState(0);
     const [hover, setHover] = useState(0);
@@ -17,17 +19,19 @@ function CreateActivity() {
         name: '',
         duration: '',
         season: [],
-        image:'image does not exist',
+        image:'',
+        review:'',
         codeCountry: []
     })
     let search = {
         order: 'AtoZ',
     }
+    const regExpName = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
+    const regExpUrl = /^(ht|f)tps?:\/\/\w+([\.\-\w]+)?\.[a-z]{2,10}(:\d{2,5})?(\/.*)?$/i; 
     const inputHandler = (event) => {
         switch(event.target.name){
             case 'name':
-                const regExp = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
-                if(event.target.value.match(regExp)){
+                if(event.target.value.match(regExpName)){
                     setError({...error, name: false})
                     setInput({...input, name: event.target.value})
                 } else {
@@ -35,6 +39,9 @@ function CreateActivity() {
                     setInput({...input, name: event.target.value})
                 }
                 
+                break;
+            case 'review':
+                setInput({...input, review: event.target.value})
                 break;
             case 'duration':
                 if(event.target.value <= 1440){
@@ -44,10 +51,16 @@ function CreateActivity() {
                         setError({...error, duration: true})
                         setInput({...input, duration: event.target.value})
                     }                
-                break;
+                    break;
             case 'image':
-                setInput({...input, image: URL.createObjectURL(event.target.files[0])
-                })
+                if(event.target.value.match(regExpUrl)){
+                    setError({...error, image: false})
+                   setInput({...input, image: event.target.value}) 
+                } else {
+                    setError({...error, image: true})
+                   setInput({...input, image: event.target.value}) 
+                }
+                
                 break;
             default:
                 setInput({...input, [event.target.name]:[...input[event.target.name],event.target.value]})
@@ -64,17 +77,24 @@ function CreateActivity() {
     }
     const submitHandler = (event) => {
         event.preventDefault()
+        const codes = arrayNonRepeat(input.codeCountry)
+        const seasons = arrayNonRepeat(input.season)
+        input.season = seasons
+        input.codeCountry = codes
         input['difficulty'] = difficulty
-        if(!error.name && !error.duration){
+        if(!error.name && !error.duration && difficulty > 0){
             dispatch(addActivity(input))
             setSubmit(true)
             setInput({
                     name: '',
                     duration: '',
                     season: [],
-                    image:'image does not exist',
+                    image:'',
+                    review:'',
                     codeCountry: []
                 })
+        } else {
+            setSubmit(false)
         }       
     }
     useEffect(()=>{
@@ -99,6 +119,14 @@ function CreateActivity() {
                 <span className={style.text__label}>Write a duration (min)</span>
             </label>
         </div>
+
+        {/* <div className={style.input__container}>
+            <input type='text'  name='review' value={input.review} onChange={(e) => inputHandler(e)}/>
+            <label for="review" className={style.form__label}>
+                <span className={style.text__label}>Write a review</span>
+            </label>
+        </div> */}
+
             <label for="difficulty" className={style.form__label}>Choose a difficulty</label>
             <div className={style.star__rating}>
                 {[...Array(5)].map((star, index) => {
@@ -120,9 +148,12 @@ function CreateActivity() {
                 })}
             </div>
 
-            <div className={style.input__container}>
-            <input type='file'  name='image' accept="image/*" onChange={(e) => inputHandler(e)}/>
-            </div>
+            <div className={!error.image? style.input__container : style.input__container__error}>
+            <input type='text'  name='image' value={input.image} onChange={(e) => inputHandler(e)}/>
+            <label for="image" className={style.form__label}>
+                <span className={style.text__label}>Import an image URL</span>
+            </label>
+        </div>
 
             <label for="season" className={style.form__label}>Choose a season</label>
             <select className={style.form__inputs} name="season"  onChange={(e) => inputHandler(e)} required>
@@ -140,16 +171,16 @@ function CreateActivity() {
                 return <option key={c.id} value={c.id}>{c.name}</option>
                 }))}
             </select>
-            <button className={error.name || error.duration ? style.submit__button__error: style.submit__button} type='submit' disabled={error.name || error.duration || !input.name.length || !input.duration.length ? true : false }>Add Activity</button>
+            <button className={error.name || error.duration || !difficulty ? style.submit__button__error: style.submit__button} type='submit' disabled={error.name || error.duration || !input.name.length || !input.duration.length ? true : false }>Add Activity</button>
         </form>
         <div className={style.preview__card}>
             <h1>Preview</h1>
-            {input.image !== 'image does not exist' && <img src={input.image} alt={input.name} className={style.image__preview}/>}
+            {input.image.match(regExpUrl) && <img src={input.image} alt={input.name} className={style.image__preview}/>}
             <h3>{input.name}</h3>
             <p>Duration: {input.duration} min</p>
             <label>Season:</label>
             <ul className={style.preview__ul}>
-                {input.season && input.season.map(seas => 
+                {input.season && arrayNonRepeat(input.season).map(seas => 
                 <div className={style.preview__li}>
                 <li key={seas} >{seas}</li>
                 <button name={seas} className={style.preview__button} onClick={(e)=>deleteSeasonHandler(e)}>X</button>
@@ -157,7 +188,7 @@ function CreateActivity() {
             </ul>
             <label>Countries:</label>
             <ul className={style.preview__ul}>
-                {input.codeCountry && input.codeCountry.map(coun => {
+                {input.codeCountry && arrayNonRepeat(input.codeCountry).map(coun => {
                     let nameCoun = country[0].flat().filter(c => c.id === coun)
                     return <div className={style.preview__li} >
                     <li key={nameCoun[0].name}>{nameCoun[0].name}</li>

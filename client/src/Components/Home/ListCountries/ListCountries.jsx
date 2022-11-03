@@ -18,7 +18,7 @@ export default function ListCountries() {
         setLoading(true)
         setTimeout(()=>{
             setLoading(false)
-        }, 1000)
+        }, 500)
         
     }, [listCountries])
     

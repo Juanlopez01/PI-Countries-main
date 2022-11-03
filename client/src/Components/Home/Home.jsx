@@ -1,6 +1,7 @@
 import React from "react";
 import Filter from './Filters/Filter'
 import ListCountries from './ListCountries/ListCountries'
+import ListCountries_class from "./ListCountries/ListCountries_class";
 import style from './Home.module.css'
 
 
@@ -15,7 +16,7 @@ export default function Home(){
                     <Filter />
                 </div>
                 <div className={style.home__main__listCountries}>
-                    <ListCountries />
+                    <ListCountries_class />
                 </div>
             </div>
         </div>

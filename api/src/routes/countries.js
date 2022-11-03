@@ -21,8 +21,7 @@ router.get('/', async (req, res) => {
             pageCountries = await pagination(filterCountries)
             return res.status(200).json(pageCountries)
         } else {
-            //Si existe query utilizo la funcion para traer aquellos paises con coincidencias            
-            // let _country = await searchCountryByName(name)
+            //Si existe query utilizo la funcion para traer aquellos paises con coincidencias
             let _countryOrder = await countriesOrder(order, touristSeason, continent, name)
             let pageCountry = await pagination(_countryOrder)
             return res.status(200).json(pageCountry)
